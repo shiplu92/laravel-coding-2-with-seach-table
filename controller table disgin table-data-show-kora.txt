@@ -1,0 +1,12 @@
+public function roll(Request $request){
+
+ $validated = $request->validate([
+        'Department_id'=>'required',
+           
+        ]);
+
+
+$getstudent=admissons::with(['student'])->where('Batch_id',$request->batch_id)->where('Department_id',$request->Department_id)->where('semester_id',$request->semester_id)->get();
+return response()->json($getstudent);
+
+}

@@ -1,0 +1,108 @@
+
+
+
+<script src="{{ asset('public/ajax/jquery.min.js') }}"></script>
+
+
+<script src="{{ asset('public/js') }}/notify.js"></script>
+<script>
+	
+$(document).on('click','#search',function(){
+	var batch_id =$('#batch_id').val();
+var Department_id =$('#Department_id').val();
+var semester_id =$('#semester_id').val();
+
+
+$('.notifyjs-corner').html('');
+if(batch_id==''){
+  $.notify("batch_id required",{globalPosition:'top right',className:'error'});
+  return false;
+}
+$('.notifyjs-corner').html('');
+if(semester_id==''){
+  $.notify("semester_id required",{globalPosition:'top right',className:'error'});
+  return false;
+}
+
+
+
+
+
+
+
+
+
+
+
+$('.notifyjs-corner').html('');
+if(Department_id==''){
+  $.notify("Department_id required",{globalPosition:'top right',className:'error'});
+  return false;
+}
+
+
+
+
+
+$.ajax({
+
+url:"{{route('roll')}}",
+type:"Get",
+data:{'batch_id':batch_id,'Department_id':Department_id,'semester_id':semester_id},
+success:function(data){
+$('#roll-generate').removeClass('d-none');
+var html='';
+$.each(data,function(key,v) {
+	html+=
+	'<tr>'+
+
+'<td>'+v.student.username+'</td>'+
+
+
+'<td>'+v.First_Name+'<input type="hidden" name="First_Name[]" value="'+v.First_Name+'"></td>'+
+
+
+
+'<td>'+v.phoneNU+'</td>'+
+
+
+'<td>'+v.FatherName+'</td>'+
+'<td>'+v.email+'</td>'+
+
+'<td>'+v.Nid+'</td>'+
+
+'<td><input type="text" class="form-control form-control-sm" name="roll[]" value="'+v.roll_no+'"></td>'+
+
+
+
+	'</tr>';
+
+
+});
+
+html=$('#roll-generate-tr').html(html);
+
+}
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
+
+
+</script>

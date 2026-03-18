@@ -1,0 +1,575 @@
+@extends('layouts.admin')
+
+@section('admin_content')
+
+
+
+
+<script src="{{ asset('public/ajax/jquery.min.js') }}"></script>
+<script src="{{asset('public/hj')}}/handlebars.min.lk.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+
+
+
+
+
+
+
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Student Marks Entry</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <button class="btn btn-primary" data-toggle="modal" data-target="#ADDModal" style="color:white;">
+                <a href="" style="color:white;">
+             
+
+</a>
+
+           </button>
+            </ol>
+          </div><!-- /.col -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+
+                         
+
+             
+
+
+
+
+              <div class="card-header">
+                <h3 class="card-title"></h3>
+              </div>
+              
+                <div class="card-body">
+
+<form method="post" action="{{route('getstmark.store')}}" id="quickForm" enctype="multipart/form-data">
+
+
+@csrf
+
+
+
+
+              <div class="row p-2">
+                <div class="form-group col-3">
+                  <label>Batch</label>
+                   <select class="form-control"
+                    name="batch_id" id="batch_id"  id="val-skill">
+                  <option  >Select</option>
+                  @foreach($rt as $row)
+                   <option value="{{$row->id}}">{{$row->batch_name}}</option>
+                  @endforeach
+
+
+
+                
+                   </select>
+
+                     
+
+
+
+                </div>
+         
+                <div class="form-group col-3">
+                  <label>Department</label>
+                   <select class="form-control submitable" name="Department_id" id="Department_id">
+                       <option>select</option>
+
+                         @foreach($et as $row)
+                   <option value="{{$row->id}}">{{$row->department_name}}</option>
+                  @endforeach
+            
+                   </select>
+  
+
+                </div>
+
+
+
+
+
+  <div class="form-group col-3">
+                  <label>Semester</label>
+                   <select class="form-control submitable" name="semester_id" id="semester_id">
+                       <option>select</option>
+                         @foreach($tt as $row)
+                   <option value="{{$row->id}}">{{$row->semester_name}}</option>
+                  @endforeach
+            
+         
+                   </select>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="form-group col-3">
+                  <label>Fee Categories</label>
+                   <select class="form-control submitable" name="FeeCatagories_id" id="FeeCatagories_id">
+                       <option>select</option>
+                         @foreach($tts as $row)
+                   <option value="{{$row->id}}">{{$row->Fee_catagore}}</option>
+                  @endforeach
+            
+         
+                   </select>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="form-group col-3" style="padding-top: 29px;">
+                <a id="search" class="btn btn-primary btn-sm search" name="search" data-toggle="tooltip">Search</a>
+
+                </div>
+
+
+</div>
+
+<br>
+
+
+
+<div class="card-body">
+  
+<div id="DocumentResults"></div>
+<script id="document-template" type="text/x-handlebars-template">
+      <table  class="table table-bordered table-striped table-sm " >
+        <thead>
+          <tr>
+            @{{{thsource}}}
+
+          </tr>
+
+        </thead>
+        <tbody>
+          @{{#each this}}
+          <tr>
+          @{{{tdsource}}}
+        
+
+          </tr>
+
+           @{{/each}}
+        </tbody>
+
+
+
+
+  </table>
+  
+
+
+
+</script>
+
+
+</div>
+
+
+<!---------table show---
+
+ 
+<div class="row d-none" id="roll-generate">
+  <div class="col-md-12">
+
+    
+
+                  <table id="" class="table table-bordered table-striped table-sm " style="width:100%" >
+                    <thead>
+                    <tr>
+                      <th>Student_id</th>
+                       <th>Roll</th>
+                       <th>Name</th>
+                       
+                      
+                      
+                      <th>Phone number</th>
+                        <th>Father Name</th>
+                      <th>E-mail</th>
+  <th>Nid</th>
+
+
+
+
+
+
+
+
+
+
+
+
+                      <th>Marks</th>
+
+                    
+                      
+
+
+
+
+                    </tr>
+                    </thead>
+                    <tbody id="roll-generate-tr">
+                 
+               
+               
+                    </tbody>
+                  </table>
+
+  </div>
+
+
+
+
+<div class="form-group">
+  <button type="submit" class="btn btn-primary">Student Mark</button>
+</div>
+
+
+
+  
+
+
+</div>
+
+
+
+
+ search--->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </div>
+
+
+
+
+
+
+
+
+ </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </div>
+          </div>
+      </div>
+    </div>
+</section>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<script src="{{ asset('public/ajax/jquery.min.js') }}"></script>
+
+
+<script src="{{asset('public/shiplu')}}/handlebars.js"></script>
+
+
+
+
+
+
+
+
+
+ 
+<script>
+  
+$(document).on('click','#search',function(){
+  var batch_id =$('#batch_id').val();
+var Department_id =$('#Department_id').val();
+var semester_id =$('#semester_id').val();
+//var FeeCatagories_id =$('#FeeCatagories_id').val();
+
+
+
+
+
+$.ajax({
+url:"{{route('TransdeController.fessst')}}",
+
+ type:"get",
+data:{'batch_id':batch_id,'Department_id':Department_id,'semester_id':semester_id},
+beforeSend:function(){
+
+},
+success:function(data){
+   var source = $("#document-template").html();
+ var template = Handlebars.compile(source);
+ var html=template(data);
+ $('#DocumentResults').html(html);
+ $('[data-toggle="tooltip"]').tooltip();
+
+}
+
+});
+
+
+
+
+
+});
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  
+$(function shiplu() {
+
+var table=$('.ytable').DataTable({
+processing:true,
+serverSide:true,
+"searching":true,
+"ajax":{
+"url":"",
+"data":function(e){
+  e.First_Name=$("#First_Name").val();
+e.date=$("#date").val();
+e.Department_id=$("#Department_id").val();
+e.semester_id=$("#semester_id").val();
+e.Batch_id=$("#Batch_id").val();
+
+
+
+}
+},
+columns:[
+{data:'DT_RowIndex',name:'DT_RowIndex'},
+   {data:'image',name:'image', render: function(data, type ,full,meta){
+                    return "<img src={{URL::to('/public')}}/images/" +data+" width='100' class='img-thumbnail'/>";
+                }},
+
+
+
+
+
+
+
+
+
+
+{data:'roll_no',name:'roll_no'},
+{data:'First_Name',name:'First_Name'},
+
+
+
+{data:'phoneNU',name:'phoneNU'},
+{data:'FatherName',name:'FatherName'},
+{data:'gender',name:'gender'},
+
+
+
+{data:'semester_name',name:'semester_name'},
+{data:'batch_name',name:'batch_name'},
+{data:'department_name',name:'department_name'},
+
+
+{data:'date',name:'date'},
+
+
+
+{data:'action',name:'action',orderable:true,searchingable:true},
+]
+
+});
+
+
+});
+$(document).on('change','.submitable',function(){
+$('.ytable').DataTable().ajax.reload();
+
+});
+
+
+  $(document).on('blur','.submitable_input', function(){
+      $('.ytable').DataTable().ajax.reload();
+  });
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@endsection

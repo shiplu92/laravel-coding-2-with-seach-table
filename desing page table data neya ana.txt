@@ -1,0 +1,51 @@
+
+<!---------table show---search--->
+<div class="row d-none" id="roll-generate">
+	<div class="col-md-12">
+
+		
+
+                  <table id="" class="table table-bordered table-striped table-sm " style="width:100%" >
+                    <thead>
+                    <tr>
+                      <th>Student_id</th>
+                       <th>Name</th>
+                       
+                      
+                      
+                      <th>Phone number</th>
+                        <th>Father Name</th>
+                      <th>E-mail</th>
+<th>Nid</th>
+                      <th>ROLL</th>
+
+                    
+                      
+
+
+
+
+                    </tr>
+                    </thead>
+                    <tbody id="roll-generate-tr">
+                 
+               
+               
+                    </tbody>
+                  </table>
+
+	</div>
+
+
+
+
+<div class="form-group">
+	<button type="submit" class="btn btn-primary">Roll Genarate</button>
+</div>
+
+
+
+	
+
+
+</div>

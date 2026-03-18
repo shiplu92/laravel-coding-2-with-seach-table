@@ -1,0 +1,37 @@
+
+
+<div class="card-body">
+  
+<div id="DocumentResults"></div>
+<script id="document-template" type="text/x-handlebars-template">
+      <table  class="table table-bordered table-striped table-sm " >
+        <thead>
+          <tr>
+            @{{{thsource}}}
+
+          </tr>
+
+        </thead>
+        <tbody>
+          @{{#each this}}
+          <tr>
+          @{{{tdsource}}}
+        
+
+          </tr>
+
+           @{{/each}}
+        </tbody>
+
+
+
+
+  </table>
+  
+
+
+
+</script>
+
+
+</div>

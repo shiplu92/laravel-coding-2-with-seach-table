@@ -1,0 +1,29 @@
+
+public function fessst(Request $request){
+
+
+
+
+
+$allstudent=admissons::where('semester_id',$request->semester_id)->where('Department_id',$request->Department_id)->where('batch_id',$request->batch_id)->get();
+
+
+
+$html['thsource']='<th>sl</th>';
+
+$html['thsource'].='<th>sjjl</th>';
+
+foreach ($allstudent as $key => $v) {
+    $registation=feesed::where('semester_id',$v->semester_id)->first();
+    $color='success';
+    $html[$key]['tdsource']='<td>'.($key+1).'</td>';
+     $html[$key]['tdsource'].='<td>'.$v->First_Name.'</td>';
+
+}
+
+return response()->json(@$html);
+
+
+
+
+}

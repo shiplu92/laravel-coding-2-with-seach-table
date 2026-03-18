@@ -1,0 +1,43 @@
+
+
+
+ 
+<script>
+  
+$(document).on('click','#search',function(){
+  var batch_id =$('#batch_id').val();
+var Department_id =$('#Department_id').val();
+var semester_id =$('#semester_id').val();
+//var FeeCatagories_id =$('#FeeCatagories_id').val();
+
+
+
+
+
+$.ajax({
+url:"{{route('TransdeController.fessst')}}",
+
+ type:"get",
+data:{'batch_id':batch_id,'Department_id':Department_id,'semester_id':semester_id},
+beforeSend:function(){
+
+},
+success:function(data){
+   var source = $("#document-template").html();
+ var template = Handlebars.compile(source);
+ var html=template(data);
+ $('#DocumentResults').html(html);
+ $('[data-toggle="tooltip"]').tooltip();
+
+}
+
+});
+
+
+
+
+
+});
+
+
+</script>
